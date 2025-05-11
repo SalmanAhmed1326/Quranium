@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Contract Tools</title>
+    <style>
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .task { margin-bottom: 40px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        textarea { width: 100%; height: 120px; padding: 10px; margin: 10px 0; }
+        button { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+        pre { background: #f8f9fa; padding: 15px; border-radius: 4px; overflow-x: auto; }
+        .error { color: #dc3545; margin: 10px 0; }
+        .result-section { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Smart Contract Tools</h1>
+        
+        <!-- Task 1 -->
+        <div class="task">
+            <h2>Natural Language to Smart Contract</h2>
+            <form action="/task1" method="post">
+                <textarea name="description" placeholder="Enter your requirement (e.g., 'Create an ERC-20 token with minting restricted to allowlist')"></textarea>
+                <button type="submit">Generate Code</button>
+            </form>
+            
+            {% if task1_code %}
+            <div class="result-section">
+                <h3>Generated Code:</h3>
+                <pre>{{ task1_code }}</pre>
+                <h3>Security Considerations:</h3>
+                <pre>{{ task1_security }}</pre>
+            </div>
+            {% endif %}
+            
+            {% if task1_error %}
+            <div class="error">Error: {{ task1_error }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Task 2 -->
+        <div class="task">
+            <h2>Smart Contract Explainability</h2>
+            <form action="/task2" method="post">
+                <textarea name="contract_input" placeholder="Enter contract address (Sepolia) or Solidity code"></textarea>
+                <button type="submit">Analyze</button>
+            </form>
+            
+            {% if task2_explanation %}
+            <div class="result-section">
+                <h3>Analysis ({{ input_type }}):</h3>
+                <pre>{{ task2_explanation }}</pre>
+            </div>
+            {% endif %}
+            
+            {% if task2_error %}
+            <div class="error">Error: {{ task2_error }}</div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
